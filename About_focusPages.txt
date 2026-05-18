@@ -1,0 +1,11 @@
+focus pages are the pages that get read into the focus area such as homepage/mainHp.html
+
+focus pages are read into the focus area
+example: 
+    `
+    <main id="focus_area">
+        ${focusPage_contents}
+    </main>
+    `
+so dont add the <head> <body> <main> or any other stuff like that to them 
+it will just fuck up the focus area :D

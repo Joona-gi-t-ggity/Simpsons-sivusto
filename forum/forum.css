@@ -1,0 +1,21 @@
+/* main */
+main {
+    background-color: #5C9ED9;
+    padding: 1em;
+}
+/* -- content -- */
+#forum_content {
+    background-color: #ffffff;
+    padding: 1em;
+}
+/* commentting */
+#newComment_btn {
+    font-size: 1.5em;
+}
+
+#commentPopup {
+    background-color: #ffffff;
+    border: 0.3em solid #000000; 
+}
+
+/* forum messages */

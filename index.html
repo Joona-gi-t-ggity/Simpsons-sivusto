@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="fi">
+    <head>
+        <!-- ???-meta init -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- metadata aka the shiz that browsers want -->
+        <meta name="keywords" content="wiki, Simpsons, fanwiki, unofficial, opensource">
+        <meta name="description" content="A fanwiki for The Simpsons tv-cartoon, made for a school assigment.">
+        <meta name="author" content="Jp">
+        <!-- page title -->
+        <title> Simpsons wiki </title>
+        <!-- CSS stylesheet and main javascript inits -->
+        <link rel="stylesheet" href="./main_styles.css">
+        <script src="./main_scripts.js" defer></script>
+    </head>
+    <body>
+        <!-- top bar section -->
+        <header id="top_bar">
+            <button id="logo_btn" name="homepage_button"
+                onclick="load_newFocus('./homepage/mainHp.html')">
+                <img src="./media/logo.svg" alt="LOGO image">
+            </button>
+            <h1> The Simpsons Page </h1>
+        </header>
+        <!-- main navigation -->
+        <nav id="main_nav">
+            <button 
+                class="not_selBtn" id="to_sf_btn" name="To springfield page"
+                onclick="load_newFocus('./springfield/mainSpring.html', 'to_sf_btn')">
+                Springfield
+            </button>
+            <button 
+                class="not_selBtn" id="to_chars_btn" name="To characters page"
+                onclick="load_newFocus('./characters/mainChar.html', 'to_chars_btn')">
+                Characters
+            </button>
+            <button 
+                class="not_selBtn" id="to_forum_btn" name="To forum page"
+                onclick="load_newFocus('./forum/mainForum.html', 'to_forum_btn')">
+                Forum
+            </button>
+        </nav>
+        <!-- main- or focus_area -->
+        <main id="focus_area">
+            <h1>Waiting to load...</h1>
+        </main>
+    </body>
+</html>

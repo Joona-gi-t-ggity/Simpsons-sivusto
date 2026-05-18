@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="./forum/forum.css">
+
+<section id="forum_content">
+    <button 
+        name="New message" id="newComment_btn"
+        command="show-modal" 
+        commandfor="commentPopup"> 
+        New message 
+    </button>
+    <dialog id="commentPopup">
+        <form action="forum_postComment">
+            <label for="name">Nimi: </label>
+
+        </form>
+    </dialog>
+    <hr>
+    <h2 style="justify-self: center;"> Message board </h2>
+    <hr>
+    <section id="forum_messages"></section>
+</section>

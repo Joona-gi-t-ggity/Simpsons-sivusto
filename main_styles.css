@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: grid;
+    grid-template-areas:
+        'top_bar'
+        'main_nav'
+        'focus_area';
+    grid-template-rows: 4fr 2fr 19fr;
+}
+
+/* top bar vvv */
+header#top_bar {
+    grid-area: top_bar;
+    display: flex;
+}
+#logo_btn {
+    display: inline-flex;
+    cursor: pointer;
+
+}
+#logo_btn img {
+    height: 4fr;
+    object-fit: contain;
+}
+
+/* main navigation vvv */
+
+nav#main_nav {
+    grid-area: main_nav;
+    background-color: #00ff00;
+    display: flex;
+}
+/*
+Each button in main nav takes up 18% of the whole
+(all 3 together equaling to 54% ) 
+*/
+#main_nav button{
+    flex: 0 0 18%;
+}
+
+/* main- or focus_area vvv */
+
+main#focus_area {
+    grid-area: focus_area;
+    background-color: #0000ff;
+}

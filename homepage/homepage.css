@@ -1,0 +1,82 @@
+/* main */
+main {
+    margin: 0;
+    background-color: #5C9ED9;
+}
+main h1 {
+    color: #000000;
+}
+/* hr:s */
+main .hr_thin {
+    border: none;
+    background-color: #333;
+    height: 1px;
+}
+main .hr_medium {
+    border: none;
+    background-color: #333;
+    height: 2px;
+}
+main .hr_big {
+    border: none;
+    background-color: #333;
+    height: 4px;
+}
+/* banner */
+main .hp_banner {
+    background-color: #0066FF;
+    height: 10vh;
+    
+    display: flex;
+    justify-content: center;
+
+    border-bottom : 4px solid #333;
+}
+.hp_banner img {
+    height: auto;
+}
+/* content */
+main .hp_content {
+    background-color: #5C9ED9;
+    margin: 1em;
+    
+    display: flex;
+    flex-direction: row;
+}
+
+.hp_content #info_simpsons {
+    width: 70%;
+
+    background-color: #ffffff;
+    padding: 1em;
+}
+.hp_content #hp_content_nav {
+    width: 30%;
+}
+
+#hp_content_nav .hp_contNav_area {
+    display: flex;
+    flex-direction: column;
+
+    background-color: #FFFFFF;
+    
+    margin: 10%;
+    border: 0.2em solid #000000;
+}
+.hp_contNav_area ul {
+    padding: 5%;
+    list-style-type: none;
+}
+/* review */ 
+#info_simpsons .review {
+    display: flex;
+    flex-direction: column;
+}
+#info_simpsons .review p {
+    margin: 0;
+}
+/* score text */
+.scorePar {
+    font-size: 1.5em;
+    font-weight: 600;
+}
