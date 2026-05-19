@@ -117,7 +117,7 @@ var messages = [
         "title": "re: looking for someone",
         "body": "😂😂😂😂😂😂😂😂😂😂😂"
     }
-]
+];
 function forum_load_messages() {
     const message_board = document.getElementById("forum_messages");
     // clear current messages from the msg board 
@@ -136,33 +136,126 @@ function forum_load_messages() {
         const year = dateSplit[0];
         const month = dateSplit[1];
         const day = dateSplit[2];
+        
+        const correctFormDate = `${day}.${month}. ${year}`;
 
-        msgSenderInfo.innerText = `${message["sender"]} - ${day}.${month}. ${year}`;
+        // if a sender isnt stated set it to the default
+        if (message["sender"] != ""){
+            msgSenderInfo.innerText = `${message["sender"]} - ${correctFormDate}`;
+        } else {
+            msgSenderInfo.innerText = `somebody that i used to know - ${correctFormDate}`;
+        }
         msgTitle.innerText = message["title"];
-        msgBody.innerText = message["body"];
+        // if the title has the tag funny then unshorten the LOLs
+        if (message["title"].includes("{funny}")) {
+            msgBody.innerText = message["body"].replaceAll("LOL", "Laugh Out Loud");
+        } else {
+            msgBody.innerText = message["body"];
+        }
 
         messageBox.append(msgSenderInfo, msgTitle, msgBody, spacer);
-
+        // change message box styling depending on the tags like promo or reply
         if (message["title"].includes("re: ")) {
             messageBox.style.marginLeft = "1em";
+        }
+        if (message["title"].includes("{promo}")) {
+            messageBox.style.border = "0.2em solid #E44423";
         }
 
         message_board.append(messageBox);
     }); 
 }
 
-function forum_postComment(e) {
+function forum_postMsg(e) {
     e.preventDefault();
 
     const date = new Date();
-    const rel = date.toLocaleString('fi-FI')
+    /* 
+    first we format the date to fi formatting 
+    , convert it to a string 
+    , split from the spaces
+    , take the first part  
+    , split it from the full stops
+    so we will get an array -> [day, month, year]
+    */
+    const dateList = date.toLocaleString('fi-FI').toString().split(" ")[0].split(".");
+    // date formatted the same as in the assignment thingy 
+    const dateAssFormat = `${dateList[2]}-${dateList[1]}-${dateList[0]}`;
 
-    const commentArea = document.getElementById("comments");
+    const msgSender = document.getElementById("name").value;
+    const msgTitle = document.getElementById("title").value;
+    const msgBody = document.getElementById("body").value;
 
-    const comHead = document.getElementById("commentHeader").value;
-    const comCont = document.getElementById("commentContent").value;
-    const comType = document.getElementById("commentTypeSel").value;
+    messages.unshift({
+        "sender": msgSender,
+        "date": dateAssFormat,
+        "title": msgTitle,
+        "body": msgBody
+    });
 
-    const userEmail = document.getElementById("userEmail").value;
+    forum_load_messages();
 
+    document.getElementById("commentForm").reset();
+    document.getElementById("commentPopup").close();
+}
+/*
+springfield gallery...
+*/
+async function load_newImageWindow(image_path, parent_path) {
+    await load_newFocus("./springfield/photoView.html", "to_sf_btn");
+
+    const backBtn = document.getElementById("photoView_backBtn");
+    backBtn.onclick = function() {
+        load_newFocus(parent_path, "to_sf_btn");
+    };
+    const imageElem = document.getElementById("photoView_img");
+    imageElem.src = image_path;
+}
+/*
+load into missalanious
+*/
+async function load_newToMis(page_path, toElem_id) {
+    const fileContent = await read_file(page_path);
+
+    const toElem = document.getElementById(toElem_id);
+
+    if (fileContent == false) {
+        return (false);
+    } else {
+        toElem.innerHTML = fileContent;
+        return (true);
+    }
+}
+
+async function load_newImaWin_toMis(image_path, parent_path, toElem_id) {
+    await load_newToMis("./springfield/photoView.html", toElem_id);
+
+    const backBtn = document.getElementById("photoView_backBtn");
+    backBtn.onclick = function() {
+        load_newToMis(parent_path, toElem_id);
+    };
+    const imageElem = document.getElementById("photoView_img");
+    imageElem.src = image_path;
+}
+/* characters */
+async function load_newCharFocus(character) {
+    await load_newToMis(`./characters/charFocus.html`, "focus_area");
+
+    const focusCharImg = document.getElementById("focusChar_image");
+    const infoBtn = document.getElementById("focusChar_infoBtn");
+    const memeBtn = document.getElementById("focusChar_memeBtn");
+
+    focusCharImg.src = `./characters/chars/${character}/cover.jpg`
+
+
+    await load_focusChar_info(character)
+}
+
+async function load_focusChar_info(character) {
+    await load_newToMis("./characters/infoPage.html", "focusCharData_display");
+    const fullnameElem = document.getElementById("fullname_focuschar");
+    const aboutCharElem = document.getElementById("about_focuschar_para");
+    
+    fullnameElem.innerText = await read_file(`./characters/chars/${character}/fullname.txt`);
+    aboutCharElem.innerText = await read_file(`./characters/chars/${character}/about_char.txt`);
 }

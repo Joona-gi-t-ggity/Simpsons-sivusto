@@ -1,7 +1,25 @@
+/* assignment colors
+// basic colors
 #000000
 #FFFFFF
+// topbar header and selected nav 
 #FCCB00
+// banner text shadow and promotional forum comment
 #E44423
+// bg color
 #5C9ED9
+// border on bg
 #1769B6
+// main nav bg
 #CDDF8D
+*/
+
+/* own colors
+// banner color
+#0066FF
+// offwhite (yel) light 
+#F8FFD8
+// offwhite (yel) semi-light
+#FFF2BE
+// thin hr 
+#333

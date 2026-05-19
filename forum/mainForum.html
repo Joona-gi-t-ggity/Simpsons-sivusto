@@ -8,10 +8,22 @@
         New message 
     </button>
     <dialog id="commentPopup">
-        <form action="forum_postComment">
-            <label for="name">Nimi: </label>
-
+        <button command="close" commandfor="commentPopup"> Cancel </button>
+        <h2>Create new message:</h2>
+        <hr>
+        <form id="commentForm">
+            <label for="name">Posters name: </label>
+            <input type="text" name="name" id="name">
+            <br>
+            <label for="title">Comment title: </label>
+            <input type="text" name="title" id="title">
+            <br>
+            <label for="body">Comment contents: </label>
+            <input type="text" name="body" id="body">
+            <hr>
+            <button onclick="forum_postMsg(event)" type="submit">Post comment</button>
         </form>
+        
     </dialog>
     <hr>
     <h2 style="justify-self: center;"> Message board </h2>

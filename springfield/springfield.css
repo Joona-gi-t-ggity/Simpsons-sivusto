@@ -1,0 +1,103 @@
+/* header */
+main header {
+    padding-top: 1em;
+
+    background-color: #0066FF;
+}
+
+main header h1 {
+    margin: 0;
+    margin-bottom: 0.8em;
+
+    margin-left: 1em;
+
+    color: #FFFFFF;
+    text-shadow: -0.05em 0.05em #E44423;
+}
+
+main header hr {
+    border: none;
+    background-color: #1769B6;
+    height: 5px;
+}
+/* location row div */
+main .loc_RowDiv {
+    margin-left: 1em;
+    margin-right: 1em;
+
+    justify-content: center;
+    display: flex;
+    gap: 5%;
+}
+
+/* location select button */
+.locSel_btn {
+    border: 0;
+
+    background-color: inherit;
+    cursor: pointer;
+
+    width: 30%;
+
+    margin-top: 0em;
+    margin-bottom: 0.5em;
+
+    align-content: center;
+    justify-content: center;
+}
+.locSel_btn:hover {
+    margin-top: 0.5em;
+    margin-bottom: 0em;
+}
+
+.locSel_btn img {
+    width: 100%;
+    object-fit: contain;
+
+    border: 0.3em solid #1769B6;
+}
+
+/* location */
+main .loc_Hmed {
+    color: #FFFFFF;
+    text-shadow: -0.05em 0.05em #E44423;
+
+    margin-top: 0.5em;
+    margin-left: 1em;
+    margin-bottom: 1em;
+}
+main .galleryRow {
+    margin-left: 1em;
+    margin-right: 1em;
+
+    justify-content: center;
+    display: flex;
+    gap: 5%;
+} 
+
+/* photoView */
+#photoView_backBtn {
+    margin: 0.5em;
+    padding: 0.5em;
+
+    border: 0.1em solid #FCCB00
+;
+
+    font-weight: 600;
+    background-color: #F8FFD8;
+}
+#photoView_backBtn:hover {
+    background-color: #FFF2BE;
+}
+#photoView_imgFlex {
+    display: flex;
+    justify-content: center;
+    padding: 0.5em;
+}
+#photoView_img {
+    margin: 0;
+    width: 80%;
+    object-fit: contain;
+
+    border: 0.3em solid #1769B6;
+}

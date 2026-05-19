@@ -6,6 +6,8 @@ main {
 /* -- content -- */
 #forum_content {
     background-color: #ffffff;
+    border: 0.3em solid #1769B6;
+
     padding: 1em;
 }
 /* commentting */
@@ -17,5 +19,4 @@ main {
     background-color: #ffffff;
     border: 0.3em solid #000000; 
 }
-
 /* forum messages */

@@ -1,7 +1,6 @@
 /* main */
 main {
     margin: 0;
-    background-color: #5C9ED9;
 }
 main h1 {
     color: #000000;
@@ -30,7 +29,7 @@ main .hp_banner {
     display: flex;
     justify-content: center;
 
-    border-bottom : 4px solid #333;
+    border-bottom : 4px solid #1769B6;
 }
 .hp_banner img {
     height: auto;
@@ -49,6 +48,7 @@ main .hp_content {
 
     background-color: #ffffff;
     padding: 1em;
+    border: 0.2em solid #1769B6;
 }
 .hp_content #hp_content_nav {
     width: 30%;
@@ -61,7 +61,7 @@ main .hp_content {
     background-color: #FFFFFF;
     
     margin: 10%;
-    border: 0.2em solid #000000;
+    border: 0.2em solid #1769B6;
 }
 .hp_contNav_area ul {
     padding: 5%;
