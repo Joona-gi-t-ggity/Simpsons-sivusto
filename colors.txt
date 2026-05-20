@@ -18,7 +18,7 @@
 // banner color
 #0066FF
 // offwhite (yel) light 
-#F8FFD8
+#fffbd8
 // offwhite (yel) semi-light
 #FFF2BE
 // thin hr 

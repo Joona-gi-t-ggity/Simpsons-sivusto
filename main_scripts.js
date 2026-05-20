@@ -23,7 +23,7 @@ returns
  - the file contents of the file ( if the read was succesfull)
  - false (if the read failed in some way (also failure will be logged in the console))
 */
-async function read_file(filepath) {
+async function read_file_txt(filepath) {
     try {
         const fileContent = await fetch(filepath);
         if (fileContent.ok == false) {
@@ -31,6 +31,22 @@ async function read_file(filepath) {
             return (false);
         } else {
             const results = await fileContent.text();
+            return (results);
+        }
+    } catch (eCode) {
+        console.error(`An error ocurred: ${eCode}`);
+        return (false);
+    }
+}
+
+async function read_file_json(filepath) {
+    try {
+        const fileContent = await fetch(filepath);
+        if (fileContent.ok == false) {
+            console.error("File read failed !");
+            return (false);
+        } else {
+            const results = fileContent.json();
             return (results);
         }
     } catch (eCode) {
@@ -54,7 +70,7 @@ async function load_newFocus(focusPage_path, button_id = "none") {
     } else {
         resetSel_btns()
     }
-    const fileContent = await read_file(focusPage_path);
+    const fileContent = await read_file_txt(focusPage_path);
 
     if (fileContent == false) {
         return (false);
@@ -207,7 +223,7 @@ async function load_newImageWindow(image_path, parent_path) {
     const backBtn = document.getElementById("photoView_backBtn");
     backBtn.onclick = function() {
         load_newFocus(parent_path, "to_sf_btn");
-    };
+    }
     const imageElem = document.getElementById("photoView_img");
     imageElem.src = image_path;
 }
@@ -215,7 +231,7 @@ async function load_newImageWindow(image_path, parent_path) {
 load into missalanious
 */
 async function load_newToMis(page_path, toElem_id) {
-    const fileContent = await read_file(page_path);
+    const fileContent = await read_file_txt(page_path);
 
     const toElem = document.getElementById(toElem_id);
 
@@ -227,13 +243,19 @@ async function load_newToMis(page_path, toElem_id) {
     }
 }
 
-async function load_newImaWin_toMis(image_path, parent_path, toElem_id) {
+async function load_newImaWin_toMis(image_path, parent_path, toElem_id, character = "none") {
     await load_newToMis("./springfield/photoView.html", toElem_id);
 
     const backBtn = document.getElementById("photoView_backBtn");
-    backBtn.onclick = function() {
-        load_newToMis(parent_path, toElem_id);
-    };
+    if (character != "none") {
+        backBtn.onclick = async function() {
+            await load_focusChar_memes(character);
+        }
+    } else {
+        backBtn.onclick = function() {
+            load_newToMis(parent_path, toElem_id);
+        }
+    }
     const imageElem = document.getElementById("photoView_img");
     imageElem.src = image_path;
 }
@@ -247,6 +269,12 @@ async function load_newCharFocus(character) {
 
     focusCharImg.src = `./characters/chars/${character}/cover.jpg`
 
+    infoBtn.onclick = async function() {
+        await load_focusChar_info(character);
+    }
+    memeBtn.onclick = async function() {
+        await load_focusChar_memes(character);
+    }
 
     await load_focusChar_info(character)
 }
@@ -256,6 +284,65 @@ async function load_focusChar_info(character) {
     const fullnameElem = document.getElementById("fullname_focuschar");
     const aboutCharElem = document.getElementById("about_focuschar_para");
     
-    fullnameElem.innerText = await read_file(`./characters/chars/${character}/fullname.txt`);
-    aboutCharElem.innerText = await read_file(`./characters/chars/${character}/about_char.txt`);
+    fullnameElem.innerText = await read_file_txt(`./characters/chars/${character}/fullname.txt`);
+    aboutCharElem.innerText = await read_file_txt(`./characters/chars/${character}/about_char.txt`);
+
+    const audioPlayElem = document.getElementById("sampleAudio_player")
+    const soundSource = document.createElement("source")
+    
+    soundSource.src = `./characters/chars/${character}/audio/soundSample.wav`;
+    audioPlayElem.append(soundSource)
+
+    const actorInfo = await read_file_json(`./characters/chars/${character}/voiceactor.json`);
+
+    const actorNameElem = document.getElementById("voiceActorName");
+    const actorLinkElem = document.getElementById("voiceActorLink");    
+    const actorPhotoElem = document.getElementById("voiceActorPhoto");
+
+    actorPhotoElem.src = `./characters/chars/${character}/actorImg.jpg`;
+    actorPhotoElem.alt = `Photo of ${actorInfo["name"]}`
+
+    actorNameElem.innerText = String(actorInfo["name"]);
+
+    actorLinkElem.href = actorInfo["link"]
+}
+
+meme_names = {
+    "Apu":    ["meme_1.jpg", "meme_2.jpg", "meme_3.jpg", "meme_4.jpg", "meme_5.jpg"],
+    "Bart":   ["meme_1.jpg", "meme_2.jpg", "meme_3.jpg", "meme_4.gif", "meme_5.gif"],
+    "Homer":  ["meme_1.gif", "meme_2.gif", "meme_3.gif", "meme_4.gif", "meme_5.gif"],
+    "Lisa":   ["meme_1.jpg", "meme_2.jpg", "meme_3.jpg", "meme_4.jpg", "meme_5.jpg"],
+    "Maggie": ["meme_1.jpg", "meme_2.jpg", "meme_3.jpg", "meme_4.jpg", "meme_5.jpg"],
+    "Marge":  ["meme_1.jpg", "meme_2.jpg", "meme_3.jpg", "meme_4.jpg", "meme_5.jpg"],
+    "Moe":    ["meme_1.jpg", "meme_2.jpg", "meme_3.jpg", "meme_4.jpg", "meme_5.jpg"],
+    "MrBurns":["meme_1.jpg", "meme_2.jpg", "meme_3.jpg", "meme_4.jpg", "meme_5.jpg"]
+}
+
+async function load_focusChar_memes(character) {
+    await load_newToMis(`./characters/gallery.html`, "focusCharData_display");
+    
+    const charMemes = meme_names[String(character)];
+
+    for (let i = 1; i < 6; i++) {
+        const memeBtn = document.getElementById(`meme_${i}`);
+    
+        const thisMeme = charMemes[Number(i-1)]
+        const thisMemeImgPath = String(`./characters/chars/${character}/memes/${thisMeme}`);
+
+        memeBtn.onclick = async function() {
+            await load_newImaWin_toMis(
+                thisMemeImgPath, 
+                `./characters/gallery.html`, 
+                "focusCharData_display",
+                character
+            );
+        }
+
+        console.log(`${i}, onclick: ${memeBtn.onclick}`)
+
+        const imageElem = document.createElement("img");
+        imageElem.src = `./characters/chars/${character}/memes/${thisMeme}`;
+        imageElem.alt = `meme number ${i} of ${character}`
+        memeBtn.append(imageElem)
+    }
 }
