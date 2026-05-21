@@ -1,8 +1,16 @@
 /* header */
-main header {
-    padding-top: 1em;
+main header img{
+    overflow: hidden; 
+    object-fit: cover; 
+    object-position: 25% 60%;
 
-    background-color: #0066FF;
+    width: 100%;
+    height: 15vh; 
+    
+    margin: 0; 
+    padding: 0;
+
+    border-bottom: 0.5vh solid #1769B6 ;
 }
 
 main header h1 {
