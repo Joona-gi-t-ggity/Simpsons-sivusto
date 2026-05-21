@@ -421,7 +421,7 @@ async function load_focusChar_info(character) {
 meme_names = {
     "Apu":    ["meme_1.jpg", "meme_2.jpg", "meme_3.jpg", "meme_4.jpg", "meme_5.jpg"],
     "Bart":   ["meme_1.jpg", "meme_2.jpg", "meme_3.jpg", "meme_4.gif", "meme_5.gif"],
-    "Homer":  ["meme_1.gif", "meme_2.gif", "meme_3.gif", "meme_4.gif", "meme_5.gif"],
+    "Homer":  ["meme_1.jpg", "meme_2.gif", "meme_3.gif", "meme_4.gif", "meme_5.gif"],
     "Lisa":   ["meme_1.jpg", "meme_2.jpg", "meme_3.jpg", "meme_4.jpg", "meme_5.jpg"],
     "Maggie": ["meme_1.jpg", "meme_2.jpg", "meme_3.jpg", "meme_4.jpg", "meme_5.jpg"],
     "Marge":  ["meme_1.jpg", "meme_2.jpg", "meme_3.jpg", "meme_4.jpg", "meme_5.jpg"],
