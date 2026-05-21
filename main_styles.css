@@ -60,8 +60,9 @@ nav#main_nav {
     padding-bottom: 1em;
     
     color: #000000;
-
     font-weight: 600;
+    
+    cursor: pointer;
     /*
     Each button in main nav takes up 18% of the whole
     (all 3 together equaling to 54% ) 
